@@ -1,0 +1,38 @@
+{% extends "templates/base.html.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<h1>Login</h1>
+
+{# Error message container #}
+
+{% if error_msg %}
+
+  <div class="alert alert-danger">
+    <b>Error</b>: {{ error_msg }}
+  </div>
+
+{% endif %}
+
+<form action="/form-handlers/user/login.php" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"
+      required
+      name="email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+      required
+      name="password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<br>
+<p><a href="./register.php">Sign up</a></p>
+
+{% endblock %}
