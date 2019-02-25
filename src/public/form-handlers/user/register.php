@@ -79,6 +79,7 @@ if(!empty($check_result["email"])) {
 $query = $connection->prepare("INSERT INTO `users` (`email`, `password`) VALUES (?, ?);");
 $query->execute(array($email, $password_hash));
 
+// TODO: Send email about registration
 
 header("Location: /user/login.php?welcome=1");
 die();

@@ -12,6 +12,7 @@ if(LOGGED_IN) {
     echo $twig->render('user/login.html', [
         'error_msg' => $_GET["error"],
         'welcome' => $_GET["welcome"],
+        'email_change' => $_GET['email_change'],
         'pwd_change' => $_GET['pwd_change']
     ]);
 

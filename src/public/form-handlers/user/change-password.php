@@ -2,12 +2,12 @@
 
 // Check details before proceeding
 
-$new_email = $_POST["email"];
 $password = $_POST["password"];
+$new_password = $_POST["new_password"];
 
 // If email is not set
-if(empty($new_email)) {
-    header("Location: /client-area/user/change-email.php?error=New email was not set.");
+if(empty($new_password)) {
+    header("Location: /client-area/user/change-email.php?error=New password was not set.");
 
     die();
 }
@@ -15,13 +15,6 @@ if(empty($new_email)) {
 // If password is not set
 if(empty($password)) {
     header("Location: /client-area/user/change-email.php?error=Password was not set.");
-
-    die();
-}
-
-// Check validity of the new email
-if(!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: /client-area/user/change-email.php?error=Invalid email address.");
 
     die();
 }
@@ -42,7 +35,7 @@ if(!LOGGED_IN) {
     die();
 }
 
-// Old email address
+// Email address
 $email = USERNAME;
 
 // Open MySQL connection
@@ -66,18 +59,20 @@ if(empty($result["email"])) {
     die();
 }
 
+$password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
 // Validate password, if user exists.
 if (password_verify($password, $result["password"])) {
     // Set new email address
-    $kysely = $connection->prepare("UPDATE users SET email = ? WHERE email = ?");
-    $kysely->execute(array($new_email, $email));
+    $kysely = $connection->prepare("UPDATE users SET password = ? WHERE email = ?");
+    $kysely->execute(array($password_hash, $email));
 
     // Unset session to force relogin.
     unset($_SESSION["logged_in"]);
 
-    // TODO: Send notification to old&new addresses about the change
+    // TODO: Send notification to email address about the change
 
-    header("Location: /user/login.php?email_change=1");
+    header("Location: /user/login.php?pwd_change=1");
 
     die();
 } else {

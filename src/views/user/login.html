@@ -27,7 +27,15 @@
 {% if pwd_change %}
 
   <div class="alert alert-primary">
-    Your password has been changed. You can now log in with your new email address.
+    Your password has been changed. You can now log in with your new password.
+  </div>
+
+{% endif %}
+
+{% if email_change %}
+
+  <div class="alert alert-primary">
+    Your email has been changed. You can now log in with your new email address.
   </div>
 
 {% endif %}
