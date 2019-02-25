@@ -6,3 +6,8 @@ bootstrap@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
   integrity sha512-rXqOmH1VilAt2DyPzluTi2blhk17bO7ef+zLLPlWvG494pDxcM234pJ8wTc/6R40UWizAIIMgxjvxZg5kmsbag==
+
+fork-awesome@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/fork-awesome/-/fork-awesome-1.1.6.tgz#cb30c818ea0efa5986a9706b4e30d93fbfaf111b"
+  integrity sha512-fFWz7LqRGMbyewY0Vxclw4712Cy+6Vd+1RAIJb7XY5qHpZi8BAA+Ue5sr4jAlDSI1+AD4b5WYl99NrGMtSaPzw==

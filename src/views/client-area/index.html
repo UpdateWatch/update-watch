@@ -2,22 +2,98 @@
 
 {% block title %}Client Area{% endblock %}
 
+{% block head %}
+
+<link rel="stylesheet" href="/node_modules/fork-awesome/css/fork-awesome.min.css">
+
+<style>
+  .warnOldVersion {
+    padding-left: 3px;
+  }
+</style>
+
+{% endblock %}
+
 {% block content %}
 
 <h1>Client Area</h1>
 
-Welcome, <pre style="display: inline; margin: 0;">{{ username }}</pre>!
+Welcome,
+<pre style="display: inline; margin: 0;">{{ username }}</pre>!
 
 <!-- temporary -->
 <br><br>
 
 <div class="row">
-  <div class="col-md-4">
-    <h3>Lorem ipsum</h3>
+  <div class="col-md-8">
+    <!-- <h3>Lorem ipsum</h3> -->
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Watch</th>
+          <th scope="col">Latest</th>
+          <th scope="col">Running</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- TODO: Ones with no action required go to the bottom. -->
+        {% for watcher in watchers %}
+          <tr>
+            <td>
+              {% if watcher.latest %}
+                <i class="fa fa-check-circle text-success latestVersion"></i>
+              {% else %}
+                <i class="fa fa-exclamation-circle text-danger warnOldVersion"></i>
+              {% endif %}
+            </td>
+            <th scope="row">
+              {% if watcher.url and not watcher.subject %}
+                <a href="{{ watcher.url }}">
+              {% endif %}
+
+              <!---->
+              {{ watcher.backend }}{% if watcher.subject %}:{% endif %}
+
+              {% if watcher.url and watcher.subject %}
+                <a href="{{ watcher.url }}">
+              {% endif %}
+              
+              {% if watcher.subject %}
+                {{ watcher.subject }}
+              {% endif %}
+              <!---->
+
+              {% if watcher.url %}</a>{% endif %}
+            </th>
+            <td>
+              <a href="{{ watcher.latest_version.url }}">
+                {{ watcher.latest_version.text }}
+              </a>
+            </td>
+            <td>
+              <a href="{{ watcher.running_version.url }}">
+                {{ watcher.running_version.text }}
+              </a>
+            </td>
+            <td>
+              {% if not watcher.latest %}
+                <input id="doneBtn" class="btn btn-primary" type="button" value="Done">
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <a class="btn btn-primary" role="button"
+      id="addNewAppBtn" href="add-new.php">Add new application</a>
+
   </div>
-  <div class="col-md-4">
-    <h3>Lorem ipsum</h3>
-  </div>
+
+  <!-- Account tasks -->
   <div class="col-md-4">
     <h3>Account tasks</h3>
 
