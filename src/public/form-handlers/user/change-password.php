@@ -7,14 +7,14 @@ $new_password = $_POST["new_password"];
 
 // If email is not set
 if(empty($new_password)) {
-    header("Location: /client-area/user/change-email.php?error=New password was not set.");
+    header("Location: /client-area/user/change-password.php?error=New password was not set.");
 
     die();
 }
 
 // If password is not set
 if(empty($password)) {
-    header("Location: /client-area/user/change-email.php?error=Password was not set.");
+    header("Location: /client-area/user/change-password.php?error=Password was not set.");
 
     die();
 }
@@ -30,7 +30,7 @@ require_once '../../../includes/database.php';
 
 if(!LOGGED_IN) {
     // This should be impossible, but maybe someone deletes cookies before submitting the form...
-    header("Location: /client-area/user/change-email.php?error=Login to change password.");
+    header("Location: /client-area/user/change-password.php?error=Login to change password.");
 
     die();
 }
@@ -54,7 +54,7 @@ $result = $query->fetch();
 // Check if user exists
 if(empty($result["email"])) {
     // TODO: Make report to Sentry or something
-    header("Location: /client-area/user/change-email.php?error=Internal error.");
+    header("Location: /client-area/user/change-password.php?error=Internal error.");
 
     die();
 }
@@ -76,7 +76,7 @@ if (password_verify($password, $result["password"])) {
 
     die();
 } else {
-    header("Location: /client-area/user/change-email.php?error=Invalid password.");
+    header("Location: /client-area/user/change-password.php?error=Invalid password.");
 
     die();
 }
