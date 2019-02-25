@@ -10,8 +10,7 @@ if(LOGGED_IN) {
     echo $twig->render('client-area/index.html');
 
 } else {
-
-    header("Location: /user/login.php?goto=/client-area");
-    die();
+    
+    client_area_logged_out_handler();
     
 }

@@ -18,21 +18,42 @@
 
 <form action="/form-handlers/user/login.php" method="post">
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"
-      required
-      name="email">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="exampleInputEmail1" style="padding-right: 1em;">Email address</label>
+      </div>
+      <div class="col-md-6">
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"
+          required
+          name="email">
+      </div>
+    </div>
   </div>
+
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-      required
-      name="password">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="exampleInputPassword1" style="padding-right: 1em;">Password</label>
+      </div>
+      <div class="col-md-6">
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+          required
+          name="password">
+      </div>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+
+  <!-- submit -->
+  <div class="form-row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+  <!-- ./submit -->
 </form>
 
 <br>
-<p><a href="./register.php">Sign up</a></p>
+<p>Don't have account yet? <a href="./register.php">Sign up</a>!</p>
 
 {% endblock %}

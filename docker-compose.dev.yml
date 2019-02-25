@@ -25,6 +25,7 @@ services:
       SQL_HOST: db
       SQL_USER: root
       SQL_PASSWORD: example
+      APP_NAME: 'Application name'
 
   # Database services
 

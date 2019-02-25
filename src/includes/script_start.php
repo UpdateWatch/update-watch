@@ -9,9 +9,11 @@ $twig = new Twig_Environment($loader, [
 //    'cache' => '/path/to/compilation_cache',
 ]);
 
-// require_once 'config.php';
+// Configuration
+define('APP_NAME', $_ENV['APP_NAME']);
+$twig->addGlobal('APP_NAME', APP_NAME);
 
-
+// Database configuration
 if($_ENV['DEBUG_MODE'] == "true") {
 
     define('SQL_HOST', $_ENV['SQL_HOST']);
@@ -47,3 +49,8 @@ if(!isset($_SESSION["logged_in"])) {
 
 $twig->addGlobal('logged_in', LOGGED_IN);
 $twig->addGlobal('username', USERNAME);
+
+function client_area_logged_out_handler() {
+    header("Location: /user/login.php?goto=/client-area");
+    die();
+}

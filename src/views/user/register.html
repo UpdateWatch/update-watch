@@ -6,4 +6,92 @@
 
 <h1>Sign up</h1>
 
+{# Error message container #}
+
+{% if error_msg %}
+
+  <div class="alert alert-danger">
+    <b>Error</b>: {{ error_msg }}
+  </div>
+
+{% endif %}
+
+<form action="/form-handlers/user/register.php" method="post">
+  <!-- email -->
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="exampleInputEmail1" style="padding-right: 1em;">Email address</label>
+      </div>
+      <div class="col-md-6">
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"
+          required aria-describedby="emailHelp"
+          name="email">
+        <small id="emailHelp" class="form-text text-muted">
+          We'll never share your email with anyone else. See our <a href="/legal/privacy-policy.php">Privacy Policy</a>.
+        </small>
+      </div>
+    </div>
+  </div>
+  <!-- ./email -->
+
+  <!-- password1 -->
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="exampleInputPassword2" style="padding-right: 1em;">Password</label>
+      </div>
+      <div class="col-md-6">
+        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password"
+          required
+          name="password">
+      </div>
+    </div>
+  </div>
+  <!-- ./password1 -->
+
+  <!-- password2 -->
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="exampleInputPassword2" style="padding-right: 1em;">Password (again)</label>
+      </div>
+      <div class="col-md-6">
+        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password (again)"
+          required
+          name="password2">
+      </div>
+    </div>
+  </div>
+  <!-- ./password2 -->
+
+  <!-- tos -->
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-2"></div>
+      <div class="col-md-6">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            I agree to {{ APP_NAME }}'s <a href="/legal/terms-of-service.php">Terms of Service</a> and <a href="/legal/privacy-policy.php">Privacy Policy</a>.
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ./tos -->
+
+  <!-- submit -->
+  <div class="form-row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+  <!-- ./submit -->
+</form>
+
+<br>
+<p>Already have an account? <a href="./login.php">Sign in</a>!</p>
+
 {% endblock %}

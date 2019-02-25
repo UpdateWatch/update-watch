@@ -9,6 +9,6 @@ if(LOGGED_IN) {
 
 } else {
 
-    echo $twig->render('user/register.html');
+    echo $twig->render('user/register.html', ['error_msg' => $_GET["error"]]);
 
 }
