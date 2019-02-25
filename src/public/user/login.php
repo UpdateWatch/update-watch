@@ -9,6 +9,9 @@ if(LOGGED_IN) {
 
 } else {
 
-    echo $twig->render('user/login.html', ['error_msg' => $_GET["error"]]);
+    echo $twig->render('user/login.html', [
+        'error_msg' => $_GET["error"],
+        'welcome' => $_GET["welcome"]
+    ]);
 
 }

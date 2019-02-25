@@ -10,8 +10,16 @@
 
 {% if error_msg %}
 
-  <div class="alert alert-danger">
+  <div class="alert alert-danger" role="alert">
     <b>Error</b>: {{ error_msg }}
+  </div>
+
+{% endif %}
+
+{% if welcome %}
+
+  <div class="alert alert-primary">
+    Thanks for signing up for {{ APP_NAME }}! You can now log in.
   </div>
 
 {% endif %}
