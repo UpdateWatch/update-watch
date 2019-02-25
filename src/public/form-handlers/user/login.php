@@ -32,8 +32,10 @@ $connection = getConnection();
 
 // Send query
 
-$query = $connection->prepare("SELECT * FROM users WHERE email = '$email'");
-$query->execute();
+$query = $connection->prepare("SELECT * FROM users WHERE email = ?");
+$query->execute(array(
+    $email
+));
 
 $result = $query->fetch();
 

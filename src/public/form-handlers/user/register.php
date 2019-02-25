@@ -41,6 +41,12 @@ if($tos !== "on") {
     die();
 }
 
+// Check validity of email address
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: /user/register.php?error=Invalid email address.");
+
+    die();
+}
 
 // Load essential stuff
 
