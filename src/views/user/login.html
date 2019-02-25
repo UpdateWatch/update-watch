@@ -24,6 +24,14 @@
 
 {% endif %}
 
+{% if pwd_change %}
+
+  <div class="alert alert-primary">
+    Your password has been changed. You can now log in with your new email address.
+  </div>
+
+{% endif %}
+
 <form action="/form-handlers/user/login.php" method="post">
   <div class="form-group">
     <div class="form-row">

@@ -1,0 +1,69 @@
+{% extends "templates/base.html.twig" %}
+
+{% block title %}Change email address{% endblock %}
+
+{% block content %}
+
+<h1>Change email address</h1>
+
+{# Error message container #}
+
+{% if error_msg %}
+
+  <div class="alert alert-danger" role="alert">
+    <b>Error</b>: {{ error_msg }}
+  </div>
+
+{% endif %}
+
+<form action="/form-handlers/user/change-email.php" method="post">
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="currentEmailAddress" style="padding-right: 1em;">New email address</label>
+      </div>
+      <div class="col-md-6">
+        <input type="email" class="form-control-plaintext" id="currentEmailAddress"
+          placeholder="{{ username }}"
+          readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="exampleInputEmail1" style="padding-right: 1em;">New email address</label>
+      </div>
+      <div class="col-md-6">
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"
+          required
+          name="email">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="exampleInputPassword1" style="padding-right: 1em;">Your current password</label>
+      </div>
+      <div class="col-md-6">
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your current password"
+          required
+          name="password">
+      </div>
+    </div>
+  </div>
+
+  <!-- submit -->
+  <div class="form-row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-primary">Change password</button>
+    </div>
+  </div>
+  <!-- ./submit -->
+</form>
+
+{% endblock %}
