@@ -1,43 +1,44 @@
 <?php
 
-$data = array(
-    array(
-        "backend" => "github",
-        "subject" => "fish-shell/fish-shell",
-        "url" => "https://github.com/fish-shell/fish-shell",
+require_once '../../includes/database.php';
+
+$username = USERNAME;
+
+// Open MySQL connection
+
+$connection = getConnection();
+
+// Send query
+
+$query = $connection->prepare("SELECT * FROM watchers WHERE owner = ?");
+$query->execute(array(
+    $username
+));
+
+$data = array();
+
+while ($watcher_data = $query->fetch()) {
+    $latest_status = $watcher_data["running_version_text"] == $watcher_data["latest_version_text"];
+
+    $watcher = array(
+        "backend" => $watcher_data["backend"],
+        "subject" => $watcher_data["subject"],
+        "url" => $watcher_data["url"],
 
         "latest_version" => array(
-            "number" => "NEW",
-            "text" => "3.0.2",
-            "url" => "https://github.com/fish-shell/fish-shell/releases/tag/3.0.2"
+            "number" => $watcher_data["latest_version_number"],
+            "text" => $watcher_data["latest_version_text"],
+            "url" => $watcher_data["latest_version_url"],
         ),
 
         "running_version" => array(
-            "number" => "OLD",
-            "text" => "3.0.1",
-            "url" => "https://github.com/fish-shell/fish-shell/releases/tag/3.0.1"
+            "number" => $watcher_data["running_version_number"],
+            "text" => $watcher_data["running_version_text"],
+            "url" => $watcher_data["running_version_url"],
         ),
 
-        "latest" => false
-    ),
+        "latest" => $latest_status
+    );
 
-    array(
-        "backend" => "example-custom-backend",
-        "subject" => null,
-        "url" => null,
-
-        "latest_version" => array(
-            "number" => "NEW",
-            "text" => "1.0.0",
-            "url" => "#"
-        ),
-
-        "running_version" => array(
-            "number" => "NEW",
-            "text" => "1.0.0",
-            "url" => "#"
-        ),
-
-        "latest" => true
-    )
-);
+    array_push($data, $watcher);
+}
