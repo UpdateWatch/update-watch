@@ -11,7 +11,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `watchers` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `owner` TEXT NOT NULL, /* email address */
+  `owner` int(10) NOT NULL, /* username, since email can be changed */
   `backend` TEXT NOT NULL,
   `subject` TEXT NOT NULL, /* FIXME: return `null` in data.php if it's 'default'. or something like that */
   `url` TEXT NULL,

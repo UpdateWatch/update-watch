@@ -69,6 +69,7 @@ if (password_verify($password, $result["password"])) {
 
     // Unset session to force relogin.
     unset($_SESSION["logged_in"]);
+    unset($_SESSION["logged_in_user_id"]);
 
     // TODO: Send notification to email address about the change
 

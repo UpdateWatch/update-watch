@@ -27,6 +27,13 @@ Welcome,
 <div class="row">
   <div class="col-md-8">
     <!-- <h3>Lorem ipsum</h3> -->
+    {% if msg %}
+
+    <div class="alert alert-primary">
+      {{ msg }}
+    </div>
+
+    {% endif %}
 
     <table class="table">
       <thead class="thead-dark">

@@ -49,6 +49,7 @@ if(empty($result["email"])) {
 // Validate password, if user exists.
 if (password_verify($password, $result["password"])) {
     $_SESSION["logged_in"] = $result["email"];
+    $_SESSION["logged_in_user_id"] = $result["id"];
     
     header("Location: /client-area/");
 

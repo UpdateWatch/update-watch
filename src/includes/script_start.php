@@ -3,6 +3,10 @@
 // Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
 
+// Dotenv
+$dotenv = Dotenv\Dotenv::create(__DIR__, "../../.env");
+$dotenv->load();
+
 // Twig
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/../views');
 $twig = new Twig_Environment($loader, [
@@ -30,6 +34,8 @@ if($_ENV['DEBUG_MODE'] == "true") {
 
 }
 
+define('GITHUB_KEY', $_ENV['GITHUB_KEY']);
+
 define('SQL_DATABASE', 'update_watch');
 
 // Create session
@@ -41,9 +47,11 @@ session_start();
 if(!isset($_SESSION["logged_in"])) {
     define('LOGGED_IN', false);
     define('USERNAME', null);
+    define('USER_ID', $_SESSION["logged_in_user_id"]);
 } else {
     define('LOGGED_IN', true);
     define('USERNAME', $_SESSION["logged_in"]);
+    define('USER_ID', $_SESSION["logged_in_user_id"]);
 }
 
 

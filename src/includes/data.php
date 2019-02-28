@@ -2,7 +2,7 @@
 
 require_once '../../includes/database.php';
 
-$username = USERNAME;
+$user_id = USER_ID;
 
 // Open MySQL connection
 
@@ -12,7 +12,7 @@ $connection = getConnection();
 
 $query = $connection->prepare("SELECT * FROM watchers WHERE owner = ?");
 $query->execute(array(
-    $username
+    $user_id
 ));
 
 $data = array();

@@ -38,7 +38,12 @@ if(LOGGED_IN) {
                 }
 
                 // Ask Github API about the repository
-                $github_api_response = get_repo($owner, $repo);
+                try {
+                    $github_api_response = get_repo($owner, $repo);
+                } catch(GithubApiErrorException $e) {
+                    header("Location: ./?error=" . $e->getMessage());
+                    die();
+                }
 
                 // Ask Github API about releases
                 $context = github_api_context();

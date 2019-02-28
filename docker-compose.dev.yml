@@ -20,6 +20,7 @@ services:
     volumes:
     - ./src:/var/www/html/:ro
     - ./vendor:/var/www/vendor/:ro
+    - ./.env:/var/www/.env:ro
     environment:
       DEBUG_MODE: 'true'
       SQL_HOST: db

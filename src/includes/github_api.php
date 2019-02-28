@@ -1,5 +1,7 @@
 <?php
 
+class GithubApiErrorException extends Exception {}
+
 // Github API context
 // https://secure.php.net/context
 function github_api_context() {
@@ -8,9 +10,9 @@ function github_api_context() {
     $opts = [
         "http" => [
             "method" => "GET",
-            "header" => "User-Agent: UpdateWatch\r\n" .
-                "Accept: application/vnd.github.v3+json"
-            // FIXME: Authentication for rate limit
+            "header" => "User-Agent: UpdateWatch2\r\n" .
+                "Accept: application/vnd.github.v3+json\r\n" .
+                "Authorization: token " . GITHUB_KEY
         ]
     ];
     $context = stream_context_create($opts);
@@ -26,21 +28,29 @@ function get_repo($owner, $repo) {
     $github_api_response = @file_get_contents($github_api_url, false, $context);
 
     // If API returns an error
-    // TODO: Make exception so it's handled elsewhere
     if($github_api_response === FALSE) {
-        // Redirect to previous page with error message
-        header("Location: ./?error=Error while fetching data from the API. Make sure that the repository exists.&repo");
-        
-        // If some stupid "headers already sent" errors
-        echo '<meta http-equiv="refresh" content="0; url=./?error=Error while fetching data from the API. Make sure that the repository exists.&repo">';
-        
-        // Show error if redirects disabled
-        echo "<b>ERROR</b>: Error while fetching data from the API. Make sure that the repo exists.";
-        
-        die();
+        throw new GithubApiErrorException("Error while fetching data from the API. Make sure that the repository exists.");
     }
 
     $github_api_response = json_decode($github_api_response, TRUE);
 
     return $github_api_response;
+}
+
+function get_release($owner, $repo, $version) {
+    $context = github_api_context();
+
+    $github_api_response = get_repo($owner, $repo);
+
+    $github_api_url = str_replace("{/id}", "/$version", $github_api_response["releases_url"]);
+    $release = @file_get_contents($github_api_url, false, $context);
+
+    // If API returns an error
+    if($release === FALSE) {
+        throw new GithubApiErrorException("Can't fetch release");
+    }
+
+    $release = json_decode($release, TRUE);
+
+    return $release;
 }
