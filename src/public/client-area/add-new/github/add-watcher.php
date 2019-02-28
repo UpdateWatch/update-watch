@@ -56,12 +56,12 @@ if(LOGGED_IN) {
 
     $query = $connection->prepare("INSERT INTO `watchers` (`owner`, `backend`, `subject`, `url`, " . 
         "`latest_version_number`, `latest_version_text`, `latest_version_url`, " .
-        "`running_version_number`, `running_version_text`, `running_version_url`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+        "`running_version_number`, `running_version_text`, `running_version_url`, `last_updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
-    // TODO: Make "last executed" to the DB for cronjob
     $query->execute(array(USER_ID, "github", "$owner/$repo", "https://github.com/$owner/$repo",
         $latest_unix, $latest_name, $latest["html_url"],
-        $running_unix, $running_name, $running["html_url"]));
+        $running_unix, $running_name, $running["html_url"],
+        time()));
 
     header("Location: /client-area/?msg=Watcher has been successfully added.");
 

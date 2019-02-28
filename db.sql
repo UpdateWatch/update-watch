@@ -23,5 +23,6 @@ CREATE TABLE `watchers` (
   `running_version_number` INT NOT NULL,
   `running_version_text` TEXT NOT NULL,
   `running_version_url` TEXT NULL,
+  `last_updated` int(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARSET utf8;
