@@ -53,7 +53,7 @@ if(LOGGED_IN) {
         "`latest_version_number`, `latest_version_text`, `latest_version_url`, " .
         "`running_version_number`, `running_version_text`, `running_version_url`, `last_updated`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
-    $query->execute(array(USER_ID, "github", "$owner/$repo", "https://github.com/$owner/$repo",
+    $query->execute(array(USER_ID, "github-release", "$owner/$repo", "https://github.com/$owner/$repo",
         $latest_unix, $latest_name, $latest["html_url"],
         $running_unix, $running_name, $running["html_url"],
         time()));
