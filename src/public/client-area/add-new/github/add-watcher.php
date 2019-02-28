@@ -42,14 +42,9 @@ if(LOGGED_IN) {
     $running_unix = strtotime($running["published_at"]);
     $running_name = name_generator($running);
 
-    // FIXME: Get latest non-preview version
-    $latest = get_release($owner, $repo, $version);
+    $latest = get_release($owner, $repo, "latest");
     $latest_unix = strtotime($latest["published_at"]);
     $latest_name = name_generator($latest);
-
-    // echo "<pre>";
-    // print_r($running);
-
 
     // Open MySQL connection
     $connection = getConnection();

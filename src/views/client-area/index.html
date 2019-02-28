@@ -96,7 +96,10 @@ Welcome,
             </td>
             <td>
               {% if not watcher.latest %}
-                <input id="doneBtn" class="btn btn-primary" type="button" value="Done">
+              <a href="done.php?id={{ watcher.id }}"
+                class="btn btn-primary" role="button" aria-pressed="true">
+                Done
+              </a>
               {% endif %}
               <a href="delete.php?id={{ watcher.id }}"
                 class="btn btn-primary" role="button" aria-pressed="true">
@@ -113,6 +116,20 @@ Welcome,
             </td>
           </tr>
         {% endfor %}
+        {# TODO: Show only if Done buttons are available #}
+        <tr>
+          <td></td>
+
+          <td>
+            <p>
+              <small class="text-muted"><b>Tip</b>: Press <strong>Done</strong> after you've updated the software to latest version.</small>
+            </p>
+          </td>
+
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
       </tbody>
     </table>
 

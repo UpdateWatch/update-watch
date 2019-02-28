@@ -18,7 +18,7 @@ $query->execute(array(
 $data = array();
 
 while ($watcher_data = $query->fetch()) {
-    $latest_status = $watcher_data["running_version_text"] == $watcher_data["latest_version_text"];
+    $latest_status = $watcher_data["latest_version_number"] == $watcher_data["running_version_number"];
 
     $watcher = array(
         "id" => $watcher_data["id"],
