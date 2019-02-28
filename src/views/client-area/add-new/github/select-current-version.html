@@ -19,20 +19,25 @@
   <div class="form-group">
     <label for="versionSelector">Current running version</label>
     <select class="form-control" id="versionSelector"
-      required name="version">
+      required name="version" aria-describedby="preReleaseNotice">
       {% for release in releases %}
-        <option value="{{ release.id }}">
-          {% if release.name %}
-            {{ release.name }} ({{ release.tag_name }})
-          {% else %}
-            {{ release.tag_name }}
-          {% endif %}
-          {% if release.prerelease %}
-            (prerelease)
-          {% endif %}
-        </option>
+        {% if not release.prerelease %}
+          <option value="{{ release.id }}">
+            {% if release.name %}
+              {{ release.name }} ({{ release.tag_name }})
+            {% else %}
+              {{ release.tag_name }}
+            {% endif %}
+            {% if release.prerelease %}
+              (prerelease)
+            {% endif %}
+          </option>
+        {% endif %}
       {% endfor %}
     </select>
+    <small id="preReleaseNotice" class="form-text text-muted">
+      Please note that prereleases are excluded from the list.
+    </small>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

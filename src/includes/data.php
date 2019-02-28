@@ -21,6 +21,7 @@ while ($watcher_data = $query->fetch()) {
     $latest_status = $watcher_data["running_version_text"] == $watcher_data["latest_version_text"];
 
     $watcher = array(
+        "id" => $watcher_data["id"],
         "backend" => $watcher_data["backend"],
         "subject" => $watcher_data["subject"],
         "url" => $watcher_data["url"],

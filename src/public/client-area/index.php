@@ -10,7 +10,8 @@ if(LOGGED_IN) {
 
     echo $twig->render('client-area/index.html', [
         'watchers' => $data,
-        'msg' => $_GET['msg']
+        'msg' => $_GET['msg'],
+        'error_msg' => $_GET['error']
     ]);
 
 } else {

@@ -52,7 +52,6 @@ if(LOGGED_IN) {
 
 
     // Open MySQL connection
-
     $connection = getConnection();
 
     $query = $connection->prepare("INSERT INTO `watchers` (`owner`, `backend`, `subject`, `url`, " . 

@@ -26,7 +26,16 @@ Welcome,
 
 <div class="row">
   <div class="col-md-8">
-    <!-- <h3>Lorem ipsum</h3> -->
+    {# Error message container #}
+
+    {% if error_msg %}
+
+    <div class="alert alert-danger" role="alert">
+      <b>Error</b>: {{ error_msg }}
+    </div>
+
+    {% endif %}
+
     {% if msg %}
 
     <div class="alert alert-primary">
@@ -89,6 +98,11 @@ Welcome,
               {% if not watcher.latest %}
                 <input id="doneBtn" class="btn btn-primary" type="button" value="Done">
               {% endif %}
+              <a href="delete.php?id={{ watcher.id }}"
+                class="btn btn-primary" role="button" aria-pressed="true">
+                {# TODO: Accessibility, add description #}
+                <i class="fa fa-trash"></i>
+              </a>
             </td>
           </tr>
         {% else %}
