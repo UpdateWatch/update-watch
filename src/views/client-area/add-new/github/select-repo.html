@@ -1,0 +1,32 @@
+{% extends "templates/base.html.twig" %}
+
+{% block title %}Add new watcher{% endblock %}
+
+{% block content %}
+
+<h1 style="padding-bottom: .3em;">Add new watcher - Github</h1>
+
+{# Error message container #}
+
+{% if error_msg %}
+
+  <div class="alert alert-danger" role="alert">
+    <b>Error</b>: {{ error_msg }}
+  </div>
+
+{% endif %}
+
+<form action="select-version.php" method="GET">
+  <div class="form-group">
+    <label for="repoUrlInput">URL of repository</label>
+    <input type="url" class="form-control" 
+      name="url" required id="repoUrlInput" placeholder="https://github.com/octocat/Hello-World">
+    {# TODO: Is there scheme(optional)+hostname client-side validators? #}
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<hr>
+<a href="./">Go back</a>
+
+{% endblock %}

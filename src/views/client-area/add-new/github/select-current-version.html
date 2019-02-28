@@ -1,0 +1,47 @@
+{% extends "templates/base.html.twig" %}
+
+{% block title %}Add new watcher{% endblock %}
+
+{% block content %}
+
+<h1 style="padding-bottom: .3em;">Add new watcher - Github</h1>
+
+<h4>Select current version</h4>
+
+<form action="add-watcher.php" method="GET">
+  <div class="form-group">
+    <label for="repository" style="padding-right: 1em;">Repository</label>
+    <input type="text" class="form-control-plaintext" id="repository"
+      name="repository"
+      value="{{ repo }}"
+      readonly>
+  </div>
+  <div class="form-group">
+    <label for="versionSelector">Current running version</label>
+    <select class="form-control" id="versionSelector"
+      required name="version">
+      {% for release in releases %}
+        <option value="{{ release.id }}">
+          {% if release.name %}
+            {{ release.name }} ({{ release.tag_name }})
+          {% else %}
+            {{ release.tag_name }}
+          {% endif %}
+          {% if release.prerelease %}
+            (prerelease)
+          {% endif %}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{# <pre>
+  {{ DEBUG }}
+</pre> #}
+
+<hr>
+<a href="./">Go back</a>
+
+{% endblock %}

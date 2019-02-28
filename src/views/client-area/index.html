@@ -84,12 +84,19 @@ Welcome,
               {% endif %}
             </td>
           </tr>
+        {% else %}
+          <tr>
+            <td></td>
+            <td>
+              <p>No watchers available. Go <a href="add-new/">create one</a>!</p>
+            </td>
+          </tr>
         {% endfor %}
       </tbody>
     </table>
 
     <a class="btn btn-primary" role="button"
-      id="addNewAppBtn" href="add-new.php">Add new application</a>
+      id="addNewAppBtn" href="add-new/">Add new watcher</a>
 
   </div>
 
