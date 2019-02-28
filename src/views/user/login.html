@@ -40,6 +40,14 @@
 
 {% endif %}
 
+{% if acc_deletion %}
+
+  <div class="alert alert-primary">
+    Your account and all associated watchers have been deleted. Have a nice day!
+  </div>
+
+{% endif %}
+
 <form action="/form-handlers/user/login.php" method="post">
   <div class="form-group">
     <div class="form-row">

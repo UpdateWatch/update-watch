@@ -13,7 +13,8 @@ if(LOGGED_IN) {
         'error_msg' => $_GET["error"],
         'welcome' => $_GET["welcome"],
         'email_change' => $_GET['email_change'],
-        'pwd_change' => $_GET['pwd_change']
+        'pwd_change' => $_GET['pwd_change'],
+        'acc_deletion' => $_GET['delete'],
     ]);
 
 }

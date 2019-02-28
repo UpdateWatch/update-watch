@@ -1,0 +1,60 @@
+{% extends "templates/base.html.twig" %}
+
+{% block title %}Delete account{% endblock %}
+
+{% block content %}
+
+<h1>Delete account</h1>
+
+{# Error message container #}
+
+{% if error_msg %}
+
+  <div class="alert alert-danger" role="alert">
+    <b>Error</b>: {{ error_msg }}
+  </div>
+
+{% endif %}
+
+<div class="alert alert-danger" role="alert">
+    <b>WARNING</b>: YOU ARE DELETING YOUR ACCOUNT
+  </div>
+
+<form action="/form-handlers/user/delete.php" method="post">
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="currentEmailAddress" style="padding-right: 1em;">Account you're deleting</label>
+      </div>
+      <div class="col-md-6">
+        <input type="email" class="form-control-plaintext" id="currentEmailAddress"
+          placeholder="{{ username }}"
+          readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-md-2 text-right">
+        <label for="exampleInputPassword1" style="padding-right: 1em;">Your current password</label>
+      </div>
+      <div class="col-md-6">
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your current password"
+          required
+          name="password">
+      </div>
+    </div>
+  </div>
+
+  <!-- submit -->
+  <div class="form-row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-danger">I'm absolutely sure, please delete my account</button>
+    </div>
+  </div>
+  <!-- ./submit -->
+</form>
+
+{% endblock %}
