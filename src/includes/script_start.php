@@ -28,9 +28,9 @@ if($_ENV['DEBUG_MODE'] == "true") {
     // In production, enforce HTTPS cookies
     ini_set('session.cookie_secure', 1);
 
-    define('SQL_HOST', 'localhost');
-    define('SQL_USER', '');
-    define('SQL_PASSWORD', '');
+    define('SQL_HOST', $_ENV['SQL_HOST']);
+    define('SQL_USER', $_ENV['SQL_USER']);
+    define('SQL_PASSWORD', $_ENV['SQL_PASSWORD']);
 
 }
 
