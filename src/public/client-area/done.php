@@ -39,7 +39,7 @@ if(LOGGED_IN) {
             $id,
         ));
 
-        header("Location: /client-area/?msg=Watcher has been deleted.");
+        header("Location: /client-area/?msg=Watcher's running version has been upgraded to the latest.");
         die();
     } else {
         header("Location: /client-area/?error=Watcher not found.");
