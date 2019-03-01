@@ -10,8 +10,7 @@ function api_start() {
 /*
  * Update if older than X seconds
  */
-define('UPDATE_IF_OLDER_THAN', '60');
-// FIXME: update to realistic stuff in prod
+define('UPDATE_IF_OLDER_THAN', '7200');
 
 
 
