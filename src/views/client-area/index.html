@@ -21,7 +21,7 @@
 Welcome,
 <pre style="display: inline; margin: 0;">{{ username }}</pre>!
 
-<!-- temporary -->
+{# temporary #}
 <br><br>
 
 <div class="row">
@@ -55,7 +55,7 @@ Welcome,
         </tr>
       </thead>
       <tbody>
-        <!-- TODO: Ones with no action required go to the bottom. -->
+        {# TODO: Ones with no action required go to the bottom. #}
         {% for watcher in watchers %}
           <tr>
             <td>
@@ -70,7 +70,7 @@ Welcome,
                 <a href="{{ watcher.url }}">
               {% endif %}
 
-              <!---->
+              {# #}
               {{ watcher.backend }}{% if watcher.subject %}:{% endif %}
 
               {% if watcher.url and watcher.subject %}
@@ -80,7 +80,7 @@ Welcome,
               {% if watcher.subject %}
                 {{ watcher.subject }}
               {% endif %}
-              <!---->
+              {# #}
 
               {% if watcher.url %}</a>{% endif %}
             </th>
@@ -138,7 +138,7 @@ Welcome,
 
   </div>
 
-  <!-- Account tasks -->
+  {# Account tasks #}
   <div class="col-md-4">
     <h3>Account tasks</h3>
 
