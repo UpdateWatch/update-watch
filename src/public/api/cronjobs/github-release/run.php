@@ -33,6 +33,16 @@ foreach($watchers as $watcher) {
     // Ignore if current latest version in DB
     // aka no database update needed
     if($latest_unix == $watcher["latest_version"]["number"]) {
+        $connection = getConnection();
+    
+        $query = $connection->prepare(
+            "UPDATE watchers SET last_updated = ? WHERE id = ?"
+        );
+    
+        $query->execute(array(
+            time(), $watcher["id"], 
+        ));
+
         continue;
     }
 
