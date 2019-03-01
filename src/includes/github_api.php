@@ -12,7 +12,8 @@ function github_api_context() {
             "method" => "GET",
             "header" => "User-Agent: UpdateWatch2\r\n" .
                 "Accept: application/vnd.github.v3+json\r\n" .
-                "Authorization: token " . GITHUB_KEY
+                "Authorization: token " . GITHUB_KEY . "\r\n" .
+                "Time-Zone: UTC"
         ]
     ];
     $context = stream_context_create($opts);
@@ -53,4 +54,15 @@ function get_release($owner, $repo, $version) {
     $release = json_decode($release, TRUE);
 
     return $release;
+}
+
+// Used for update & add scripts
+function github_release_name_generator($data) {
+    if($data["name"]) {
+        $name = $data["name"] . "(" . $data["tag_name"] . ")";
+    } else {
+        $name = $data["tag_name"];
+    }
+
+    return $name;
 }

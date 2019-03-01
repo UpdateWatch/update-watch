@@ -9,16 +9,6 @@ require("../../../../includes/database.php");
 
 if(LOGGED_IN) {
 
-    function name_generator($data) {
-        if($data["name"]) {
-            $name = $data["name"] . "(" . $data["tag_name"] . ")";
-        } else {
-            $name = $data["tag_name"];
-        }
-
-        return $name;
-    }
-
     $repository = $_GET["repository"];
     $version = $_GET["version"];
 
@@ -40,11 +30,11 @@ if(LOGGED_IN) {
 
     $running = get_release($owner, $repo, $version);
     $running_unix = strtotime($running["published_at"]);
-    $running_name = name_generator($running);
+    $running_name = github_release_name_generator($running);
 
     $latest = get_release($owner, $repo, "latest");
     $latest_unix = strtotime($latest["published_at"]);
-    $latest_name = name_generator($latest);
+    $latest_name = github_release_name_generator($latest);
 
     // Open MySQL connection
     $connection = getConnection();

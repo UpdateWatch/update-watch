@@ -9,7 +9,7 @@ require("../../includes/data.php");
 if(LOGGED_IN) {
 
     echo $twig->render('client-area/index.html', [
-        'watchers' => $data,
+        'watchers' => get_data_by_owner(USER_ID),
         'msg' => $_GET['msg'],
         'error_msg' => $_GET['error']
     ]);

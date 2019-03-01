@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('UTC');
+
 // Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -18,22 +20,16 @@ define('APP_NAME', $_ENV['APP_NAME']);
 $twig->addGlobal('APP_NAME', APP_NAME);
 
 // Database configuration
-if($_ENV['DEBUG_MODE'] == "true") {
+if($_ENV['DEBUG_MODE'] !== "true") {
 
-    define('SQL_HOST', $_ENV['SQL_HOST']);
-    define('SQL_USER', $_ENV['SQL_USER']);
-    define('SQL_PASSWORD', $_ENV['SQL_PASSWORD']);
-
-} else {
     // In production, enforce HTTPS cookies
     ini_set('session.cookie_secure', 1);
 
-    define('SQL_HOST', $_ENV['SQL_HOST']);
-    define('SQL_USER', $_ENV['SQL_USER']);
-    define('SQL_PASSWORD', $_ENV['SQL_PASSWORD']);
-
 }
 
+define('SQL_HOST', $_ENV['SQL_HOST']);
+define('SQL_USER', $_ENV['SQL_USER']);
+define('SQL_PASSWORD', $_ENV['SQL_PASSWORD']);
 define('GITHUB_KEY', $_ENV['GITHUB_KEY']);
 
 define('SQL_DATABASE', 'update_watch');
