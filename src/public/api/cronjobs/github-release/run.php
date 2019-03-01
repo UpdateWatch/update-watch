@@ -16,7 +16,17 @@ foreach($watchers as $watcher) {
     $owner = explode("/", $repository)[0];
     $repo = explode("/", $repository)[1];
 
-    $latest = get_release($owner, $repo, "latest");
+    try {
+        $latest = get_release($owner, $repo, "latest");
+    } catch(GithubApiErrorException $e) {
+        if($e->getMessage() == "Error while fetching data from the API. Make sure that the repository exists.") {
+            // Repo probably deleted
+            continue;
+        } else {
+            throw $e;
+        }
+    }
+    
     $latest_unix = strtotime($latest["published_at"]);
     $latest_name = github_release_name_generator($latest);
 
