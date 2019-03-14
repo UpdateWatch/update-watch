@@ -53,5 +53,20 @@
     <div class="container">
       {% block content %}{% endblock %}
     </div>
+
+    {# Not worth the extra resources needed, so disabled for now. #}
+    {#
+    <script src="/node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script>
+      // https://github.com/theel0ja/bsmenu-4/blob/master/bsmenu.js
+      $(document).ready(function () {
+        var url = window.location;
+        $('nav.navbar ul a[href="'+ url +'"]').parent().addClass('active');
+        $('nav.navbar ul a').filter(function() {
+          return this.href == url;
+        }).parent().addClass('active');
+      });
+    </script>
+    #}
   </body>
 </html>
