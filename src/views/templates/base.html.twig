@@ -10,7 +10,12 @@
 
     {% block head %}{% endblock %}
 
-    <title>{% block title %}TODO: Show App name here{% endblock %}</title>
+    {% if block('title') is defined %}
+      <title>{{ block('title') }} - {{ APP_NAME }}</title>
+    {% else %}
+      <title>{{ APP_NAME }}</title>
+    {% endif %}
+
   </head>
   <body>
     {# Navigation bar #}
