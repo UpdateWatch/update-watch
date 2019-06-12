@@ -4,8 +4,11 @@ Web-based utility that tracks software updates in one convenient place.
 
 Hosted version available at [updatewatch.lelux.fi](https://updatewatch.lelux.fi/).
 
+## Screenshots
 
-## Running in production
+![Screenshot of UpdateWatch frontpage](screenshot.png)
+
+## Running
 
 ```bash
 composer install
@@ -13,7 +16,7 @@ cp .env.dist .env
 yarn install
 ```
 
-### Database
+### Database setup
 
 Make MariaDB database as described [here](https://wiki.lelux.fi/mysql/) and add the password to `.env`.
 
